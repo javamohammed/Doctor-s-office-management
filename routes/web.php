@@ -19,12 +19,37 @@ Route::get('/dashboard', function () {
 });
 
 
-Route::get('/charts', 'ChartsController@index');
-Route::get('/data', 'ChartsController@getData');
 
 Route::middleware(['auth'])->group(function () {
     
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+
+    //Roles Management
+    //Route::resource('roles','RoleController');
+    Route::get('/roles/all', 'RoleController@index')->name('roles.index');
+    Route::get('/roles/create', 'RoleController@create')->name('roles.create');
+    Route::post('/roles/create', 'RoleController@store')->name('roles.store');
+    Route::delete('/roles/destroy/{id}', 'RoleController@destroy')->name('roles.destroy');
+    Route::get('/roles/show/{id}', 'RoleController@show')->name('roles.show');
+    Route::get('/roles/edit/{id}', 'RoleController@edit')->name('roles.edit');
+    Route::post('/roles/edit/{id}', 'RoleController@update')->name('roles.update');
+
+
+    //Permission Management
+    Route::get('/permissions/all', 'PermissionController@index')->name('permissions.index');
+    Route::delete('/permissions/destroy/{id}', 'PermissionController@destroy')->name('permissions.destroy');
+    Route::get('/permissions/create', 'PermissionController@create')->name('permissions.create');
+    Route::post('/permissions/store', 'PermissionController@store')->name('permissions.store');
+    
+
+    
+    
+    //charts
+    Route::get('/charts/appointments', 'ChartsController@getAppointments');
+    Route::get('/charts/patients', 'ChartsController@getPatients');
+    Route::get('/charts/consultations', 'ChartsController@getConsultations');
+    Route::get('/charts/orders', 'ChartsController@getOrders');
 
     Route::group(['prefix' => 'patients'], function () {
         Route::get('/all', 'PatientController@index')->name('all_patient');

@@ -55,6 +55,16 @@
             </ul>
          </li>
 
+         <li class="nav-item dropdown">
+            <a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder">✔️</span><span class="title">Roles</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
+            <ul class="dropdown-menu">
+               <li><a class="sidebar-link" href="{{route('roles.index')}}">All Roles</a></li>
+              <li><a class="sidebar-link" href="{{route('roles.create')}}">New Role</a></li>
+              <li><a class="sidebar-link" href="{{route('permissions.index')}}">All Permissions</a></li>
+              <li><a class="sidebar-link" href="{{route('permissions.create')}}">New Permission</a></li>
+            </ul>
+         </li>
+
        </ul>
     </div>
 </div>
